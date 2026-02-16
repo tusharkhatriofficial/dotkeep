@@ -2,5 +2,50 @@
 name = "dotkeep"
 version = "0.1.0"
 edition = "2024"
+authors = ["Tushar Khatri <hello@tusharkhatri.in>"]
+description = "Local .env manager. Encrypted. No cloud."
+license = "MIT"
+repository = "https://github.com/tusharkhatriofficial/dotkeep"
+keywords = ["env", "dotenv", "encryption", "cli", "secrets"]
+categories = ["command-line-utilities", "cryptography"]
 
 [dependencies]
+# CLI parsing
+clap = { version = "4.5", features = ["derive"] }
+
+# Database (encrypted SQLite)
+rusqlite = { version = "0.32", features = ["bundled-sqlcipher-vendored-openssl"] }
+
+# Encryption
+ring = "0.17"
+
+# TUI
+ratatui = "0.28"
+crossterm = "0.28"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Utilities
+uuid = { version = "1.10", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+dirs = "5.0"            # Platform-specific directories (~/.dotkeep)
+rpassword = "7.3"       # Secure password input (no echo)
+comfy-table = "7.1"     # Pretty table output
+colored = "2.1"         # Colored terminal output
+
+[dev-dependencies]
+tempfile = "3.10"       # Temp directories for tests
+assert_cmd = "2.0"      # CLI integration testing
+predicates = "3.1"      # Assertions for CLI output
+
+[profile.release]
+opt-level = "z"         # Optimize for size
+lto = true              # Link-time optimization
+codegen-units = 1       # Single codegen unit for smaller binary
+strip = true            # Strip debug symbols
