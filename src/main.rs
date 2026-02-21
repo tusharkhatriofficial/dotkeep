@@ -5,6 +5,7 @@ mod errors;
 mod tui;
 mod vault;
 
+
 use anyhow::Result;
 use clap::Parser;
 use cli::{Cli, Commands, SecretsAction};
@@ -16,6 +17,7 @@ fn main() -> Result<()> {
         Commands::Init => cli::init::handle_init()?,
         Commands::Add { name } => cli::add::handle_add(&name)?,
         Commands::AddAuto => cli::add_auto::handle_add_auto()?,
+        Commands::List => cli::list::handle_list()?,
 
         // placeholder commands for now - will implement later
         Commands::Migrate => println!("dotkeep migrate: upgrading schema..."),
@@ -23,7 +25,7 @@ fn main() -> Result<()> {
         Commands::Restore { file } => println!("dotkeep restore: importing from {}...", file),
         // Commands::Add { name } => println!("dotkeep add: scanning .env for {}...", name),
         // Commands::AddAuto => println!("dotkeep add-auto: detecting project..."),
-        Commands::List => println!("dotkeep list: showing all projects..."),
+        // Commands::List => println!("dotkeep list: showing all projects..."),
         Commands::Remove { name } => println!("dotkeep remove: deleting {}...", name),
         Commands::Inspect { name } => println!("dotkeep inspect: showing {}...", name),
         Commands::Diff { project1, project2 } => {

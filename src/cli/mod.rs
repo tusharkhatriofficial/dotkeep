@@ -1,6 +1,7 @@
 pub mod init;
 pub mod add;
 pub mod add_auto;
+pub mod list;
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
