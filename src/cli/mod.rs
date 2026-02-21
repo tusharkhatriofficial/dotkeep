@@ -1,4 +1,4 @@
-// CLI command definitions will go here.
+pub mod init;
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]

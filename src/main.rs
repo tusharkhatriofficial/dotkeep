@@ -12,7 +12,9 @@ fn main() -> Result<()> {
     let cli = Cli::parse();
 
     match cli.command {
-        Commands::Init => println!("dotkeep init: creating vault..."),
+        Commands::Init => cli::init::handle_init()?,
+
+        // placeholder commands for now - will implement later
         Commands::Migrate => println!("dotkeep migrate: upgrading schema..."),
         Commands::Backup => println!("dotkeep backup: exporting vault..."),
         Commands::Restore { file } => println!("dotkeep restore: importing from {}...", file),
