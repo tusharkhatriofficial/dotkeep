@@ -1,12 +1,12 @@
 mod cli;
 mod crypto;
-mod vault;
-mod tui;
 mod errors;
+mod tui;
+mod vault;
 
+use anyhow::Result;
 use clap::Parser;
 use cli::{Cli, Commands, SecretsAction};
-use anyhow::Result;
 
 fn main() -> Result<()> {
     let cli = Cli::parse();
